@@ -7,7 +7,7 @@ const { connectMongoDB } = require('./connect')
 const urlRoutes = require('./routes/url')
 
 const app = express()
-const PORT = 8000
+// const PORT = 8000
 
 // connecting MongoDB
 connectMongoDB('mongodb+srv://jeetbherwani2004:j4oOeMQXW7SvkkAB@cluster0.auvnxnu.mongodb.net/url')
@@ -20,4 +20,5 @@ app.use(express.json())
 app.use('/url', urlRoutes)
 
 // run the server
-app.listen(PORT, () => console.log(`Server is listening on port: ${PORT}`))
+// app.listen(PORT, () => console.log(`Server is listening on port: ${PORT}`))
+module.exports = app
