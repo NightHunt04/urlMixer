@@ -14,7 +14,7 @@ const app = express()
 const mongoURI = process.env.MONGOOSE_URI
 
 // connecting MongoDB
-connectMongoDB(mongoURI)
+connectMongoDB('mongodb+srv://jeetbherwani2004:j4oOeMQXW7SvkkAB@cluster0.auvnxnu.mongodb.net/url')
 .then(() => console.log('Mongo is connected'))
 
 // middleware
