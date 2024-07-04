@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 
 // to connect to MongoDB
@@ -9,8 +11,10 @@ const urlRoutes = require('./routes/url')
 const app = express()
 // const PORT = 8000
 
+const mongoURI = process.env.MONGOOSE_URI
+
 // connecting MongoDB
-connectMongoDB(import.meta.env.MONGOOSE_URI)
+connectMongoDB(mongoURI)
 .then(() => console.log('Mongo is connected'))
 
 // middleware
