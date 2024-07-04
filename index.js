@@ -10,7 +10,7 @@ const app = express()
 // const PORT = 8000
 
 // connecting MongoDB
-connectMongoDB('mongodb+srv://jeetbherwani2004:j4oOeMQXW7SvkkAB@cluster0.auvnxnu.mongodb.net/url')
+connectMongoDB(import.meta.env.MONGOOSE_URI)
 .then(() => console.log('MongoDB connected!'))
 
 // middleware
