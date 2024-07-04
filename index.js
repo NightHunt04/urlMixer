@@ -11,6 +11,7 @@ const app = express()
 
 // connecting MongoDB
 connectMongoDB(import.meta.env.MONGOOSE_URI)
+.then(() => console.log('Mongo is connected'))
 
 // middleware
 app.use(express.json())
