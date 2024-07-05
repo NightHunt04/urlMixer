@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const express = require('express')
+const cors = require('cors')
 
 // to connect to MongoDB
 const { connectMongoDB } = require('./connect')
@@ -19,6 +20,7 @@ connectMongoDB(mongoURI)
 
 // middleware
 app.use(express.json())
+app.use(cors())
 
 // routes
 app.use('/url', urlRoutes)
