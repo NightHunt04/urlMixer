@@ -28,7 +28,7 @@ async function handleRedirectToOriginal(req, res) {
     const shortId = req.params.id
 
     if(!shortId)
-        return res.status(400).json({ msg: 'Short ID not found '})
+        return res.status(400).json({ msg: 'Short ID not found' })
 
     const urlData = await urlModel.findOneAndUpdate({ shortId }, {
         $push: {
@@ -45,7 +45,20 @@ async function handleRedirectToOriginal(req, res) {
     res.redirect(urlData.redirectUrl)
 }
 
+// analytics
+async function handleGetAnalytics(req, res) {
+    const shortId = req.params.id
+
+    if(!shortId)
+        return res.status(400).json({ msg: 'Short ID not found' })
+
+    const analytics = await urlModel.findOne({ shortId })
+    console.log(analytics)
+    return res.status(200).json({ analytics: analytics })
+}
+
 module.exports = {
     handlePostURL,
-    handleRedirectToOriginal
+    handleRedirectToOriginal,
+    handleGetAnalytics
 }
