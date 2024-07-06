@@ -2,14 +2,27 @@
 
 This is an ExpressJS and MongoDB project of implementing an API which can change the URL into another domain, and when redirected to the changed URL, it will led to the original URL.
 
+
 ## Endpoints
 
-- To change the URL, a POST method is to be applied on the BASE URL: `https://url134.vercel.app/url`, 
+- To signUp, a POST method is to be sent to the BASE URL: `https://url134/user/signup`, and to logIn, similarly a POST method is to be sent to the BASE URL: `https://url134.vercel.app/user/login`
+/POST
+```
+curl --location 'https://url134.vercel.app/user/signup' \
+--header 'Content-Type: application/json' \
+--data '{
+	"username": "admin"	,
+	"password": "pwd"
+}'
+```
+The above code is about posting credentials for sign up, while to login, simply change the url to `https://url134.vercel.app/user/login`
+
+- To change the URL, a POST method is to be sent on the BASE URL: `https://url134.vercel.app/url`, 
 
 /POST
 
 ```
-curl --location 'https://url134.vercel.app/url' \
+curl --location 'https://url134.vercel.app/' \
 --header 'Content-Type: application/json' \
 --data '{
 	"url": "https://huggingface.co/chat/conversation/6686572d071b36c3ca40a74c"
@@ -24,17 +37,18 @@ Result-
 ```
 The above shortId, will then be appended to the domain resulting in the url: 
 ```
-https://url134.vercel.app/url/<shortId> 
+https://url134.vercel.app/<shortId> 
 ```
 By redirecting this endpoint, you will get redirected to the original url.
 
 
-- To get the analytics of the changed URL (number of clicks, original url, timestamps), a GET method is to be applied on the BASE URL: `https://url134.vercel.app/url/analytics/<shortId>`
+- To get the analytics of the changed URL (number of clicks, original url, timestamps), a GET method is to be applied on the BASE URL: `https://url134.vercel.app/url/analytics/<userId_fromMongoDB>`
 
 /GET
 
 ```
-curl --location 'https://url134.vercel.app/url/analytics/8_x5wN4T'
+curl --location 'https://url134.vercel.app/url/analytics/ObjectId("
+668950733056c639d4970b11")'
 ```
 Result-
 ```
@@ -62,5 +76,7 @@ Result-
 	}
 }
 ```
+
+
 
 
