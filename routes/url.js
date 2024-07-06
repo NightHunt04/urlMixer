@@ -10,6 +10,6 @@ router.post('/', handlePostURL)
 router.get('/:id', handleRedirectToOriginal)
 
 // GET /analytics/:id <--- to get the analytics of the shortened url
-router.get('/analytics/:id', handleGetAnalytics)
+router.get('/analytics/:userId', handleGetAnalytics)
 
 module.exports = router

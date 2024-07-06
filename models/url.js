@@ -10,6 +10,10 @@ const urlSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
+    },
     clickHistory: {
         clicks: {
             type: Number,
@@ -28,6 +32,6 @@ const urlSchema = new mongoose.Schema({
     }
 })
 
-const urlModel = mongoose.model('urlShortner', urlSchema)
+const urlModel = mongoose.model('url', urlSchema)
 
 module.exports = urlModel

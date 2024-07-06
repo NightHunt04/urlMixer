@@ -11,13 +11,14 @@ async function handlePostURL(req, res) {
     const originalUrl = req.body.url
     const createHistory = {
         clicks: 0,
-        time: [{ timeStamp: Date.now() }]
+        history: []
     }
 
     await urlModel.create({
         shortId: id,
         redirectUrl: originalUrl,
-        clickHistory: createHistory
+        clickHistory: createHistory,
+        createdBy: req.user._id
     })
 
     return res.status(201).json({ shortId: id })
@@ -47,12 +48,11 @@ async function handleRedirectToOriginal(req, res) {
 
 // analytics
 async function handleGetAnalytics(req, res) {
-    const shortId = req.params.id
+    const createdBy = req.params.userId
 
-    if(!shortId)
-        return res.status(400).json({ msg: 'Short ID not found' })
+    if(!createdBy) return res.status(400).json({ msg: 'no user id found' })
 
-    const analytics = await urlModel.findOne({ shortId })
+    const analytics = await urlModel.find({ createdBy })
     console.log(analytics)
     return res.status(200).json({ analytics: analytics })
 }
