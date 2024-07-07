@@ -1,6 +1,8 @@
 const generateShortId = require('ssid')
 const urlModel = require('../models/url')
 
+const { getUser } = require('../service/session')
+
 // post and retrieve the short url id
 async function handlePostURL(req, res) {
     const id = generateShortId(8)
@@ -48,9 +50,16 @@ async function handleRedirectToOriginal(req, res) {
 
 // analytics
 async function handleGetAnalytics(req, res) {
-    const createdBy = req.params.userId
-
-    if(!createdBy) return res.status(400).json({ msg: 'no user id found' })
+    // const createdBy = req.params.userId
+    const userSessionId = req.params.sessionId
+    // const userSessionId = req.headers?.session_id
+    const user = getUser(userSessionId)
+    
+    if(!user) return res.json({ msg: 'no user found' })
+    
+    const createdBy = user._id
+    
+    // if(!createdBy) return res.status(400).json({ msg: 'no user id found' })
 
     const analytics = await urlModel.find({ createdBy })
     console.log(analytics)
