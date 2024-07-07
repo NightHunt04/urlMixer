@@ -27,9 +27,11 @@ connectMongoDB(mongoURI)
 // middleware
 app.use(express.json())
 app.use(cors({
-    origin: 'https://url-changer.vercel.app',
+    origin: 'https://url-changer.vercel.app', // Specify your frontend URL
+    methods: 'GET, POST, PUT, DELETE, OPTIONS',
     allowedHeaders: 'Content-Type',
-}))
+    credentials: true
+  }));
 app.use(cookieParser())
 
 app.options('*', cors()); // Handle preflight requests for all routes
