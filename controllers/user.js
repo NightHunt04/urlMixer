@@ -36,7 +36,8 @@ async function handleLoginUser(req, res) {
             const sessionId = uuidv4()
             setUser(sessionId, user)
             res.cookie('session_id', sessionId)
-            return res.json({ code: 1, msg: 'success' })
+            return res.redirect(302, 'https://url-changer.vercel.app/')
+            // return res.json({ code: 1, msg: 'success' })
         }
         return res.json({ code: 2, msg: 'Invalid username or password'})
     }
