@@ -29,6 +29,8 @@ app.use(express.json())
 app.use(cors())
 app.use(cookieParser())
 
+app.options('*', cors()); // Handle preflight requests for all routes
+
 // routes
 app.use('/user', userRoutes)
 app.use('/', checkSessionsIds, urlRoutes)

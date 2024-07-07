@@ -35,6 +35,7 @@ async function handleLoginUser(req, res) {
         if(user) {
             const sessionId = uuidv4()
             setUser(sessionId, user)
+            res.setHeader('Access-Control-Allow-Origin', 'https://url-changer.vercel.app');
             res.cookie('session_id', sessionId)
             return res.redirect(302, 'https://url-changer.vercel.app/')
             // return res.json({ code: 1, msg: 'success' })
