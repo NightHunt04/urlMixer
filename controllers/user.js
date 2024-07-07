@@ -35,9 +35,9 @@ async function handleLoginUser(req, res) {
         if(user) {
             const sessionId = uuidv4()
             setUser(sessionId, user)
-            res.setHeader('Access-Control-Allow-Origin', 'https://url-changer.vercel.app');
+            res.setHeader('Access-Control-Allow-Origin', 'https://url-changer.vercel.app')
             res.cookie('session_id', sessionId)
-            return res.redirect('https://url-changer.vercel.app/')
+            return res.redirect('https://www.youtube.com/')
             // return res.json({ code: 1, msg: 'success' })
         }
         return res.json({ code: 2, msg: 'Invalid username or password'})
