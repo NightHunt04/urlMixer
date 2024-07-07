@@ -2,7 +2,6 @@ const userModel = require('../models/user')
 const { v4: uuidv4 } = require('uuid')
 
 const { setUser } = require('../service/session')
-const { domains } = require('googleapis/build/src/apis/domains')
 
 // code - 1 { success }
 // code - 2 { username already found }
