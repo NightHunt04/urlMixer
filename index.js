@@ -26,7 +26,10 @@ connectMongoDB(mongoURI)
 
 // middleware
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    origin: 'https://url-changer.vercel.app',
+    allowedHeaders: 'Content-Type',
+}))
 app.use(cookieParser())
 
 app.options('*', cors()); // Handle preflight requests for all routes
