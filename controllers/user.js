@@ -35,13 +35,13 @@ async function handleLoginUser(req, res) {
         if(user) {
             const sessionId = uuidv4()
             setUser(sessionId, user)
-            res.cookie('session_id', sessionId, {
-                domain: 'url-changer.vercel.app',
-                httpOnly: true,
-                secure: true,
-                sameSite: 'none'
-            })
-            return res.json({ code: 1, msg: 'success' })
+            // res.cookie('session_id', sessionId, {
+            //     domain: 'url-changer.vercel.app',
+            //     httpOnly: true,
+            //     secure: true,
+            //     sameSite: 'none'
+            // })
+            return res.json({ code: 1, msg: 'success', sessionId: sessionId, userId: user._id })
         }
         return res.json({ code: 2, msg: 'Invalid username or password'})
     }
