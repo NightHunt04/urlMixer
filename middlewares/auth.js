@@ -1,7 +1,7 @@
 const { getUser } = require('../service/session')
 
 async function checkSessionsIds(req, res, next) {
-    if(req.path !== '/user/login' && req.path !== '/user/signup' && !req.params?.id) {
+    if(req.path !== '/user/login' && req.path !== '/user/signup' && (req.path === '/' && !req.params?.id)) {
         // const userSessionId = req.cookies.session_id
         const userSessionId = req.headers?.session_id
         console.log(req.headers)
