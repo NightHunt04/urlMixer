@@ -1,6 +1,4 @@
 const userModel = require('../models/user')
-const { v4: uuidv4 } = require('uuid')
-
 const { setUser } = require('../service/session')
 
 // code - 1 { success }
@@ -33,15 +31,11 @@ async function handleLoginUser(req, res) {
         const user = await userModel.findOne({ username, password })
 
         if(user) {
-            const sessionId = uuidv4()
-            setUser(sessionId, user)
+            const jwtToken = setUser(user)
             // res.cookie('session_id', sessionId, {
-            //     domain: 'url-changer.vercel.app',
-            //     httpOnly: true,
-            //     secure: true,
-            //     sameSite: 'none'
+            //     domain: '.url-changer.vercel.app',
             // })
-            return res.json({ code: 1, msg: 'success', sessionId: sessionId, userId: user._id })
+            return res.json({ code: 1, msg: 'success', sessionId: jwtToken })
         }
         return res.json({ code: 2, msg: 'Invalid username or password'})
     }

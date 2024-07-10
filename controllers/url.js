@@ -5,7 +5,7 @@ const { getUser } = require('../service/session')
 
 // post and retrieve the short url id
 async function handlePostURL(req, res) {
-    const id = generateShortId(8)
+    const id = generateShortId(6)
     
     if(!req.body.url)
         return res.status(400).json({ msg: 'No url found' })
@@ -15,12 +15,11 @@ async function handlePostURL(req, res) {
         clicks: 0,
         history: []
     }
-
     await urlModel.create({
         shortId: id,
         redirectUrl: originalUrl,
         clickHistory: createHistory,
-        createdBy: req.user._id
+        createdBy: req.user._doc._id
     })
 
     return res.status(201).json({ shortId: id })
@@ -57,7 +56,7 @@ async function handleGetAnalytics(req, res) {
     
     if(!user) return res.json({ msg: 'no user found' })
     
-    const createdBy = user._id
+    const createdBy = user._doc._id
     
     // if(!createdBy) return res.status(400).json({ msg: 'no user id found' })
 
